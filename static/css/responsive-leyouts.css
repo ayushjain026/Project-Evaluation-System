@@ -1,0 +1,106 @@
+/*-----------------------------RESPONSIVE STYLES---------------------------------- */
+
+@media only screen and (min-width: 1000px) and (max-width: 1169px) {
+.header-style1 .display-tc h1 {
+    font-size: 50px;
+}
+.col-md-push-5 {
+    left: 37.5667%;
+}
+
+
+
+
+
+}
+
+ @media only screen and (min-width: 768px) and (max-width: 999px) {
+
+.header-section .logo {
+  margin-left:0px !important;
+}
+.header-section.transparent.pin-start.off, .header-section.transparent.style1.pin-style.pin-start.woff{
+    background-color:#000 !important;
+}
+.header-style1 .display-tc h1 {
+    font-size: 45px;
+}
+
+
+
+
+
+
+
+}
+
+ @media only screen and (min-width: 640px) and (max-width: 767px) {
+.header-section .logo {
+  margin-left:0px !important;
+}
+.header-section.transparent.pin-start.off, .header-section.transparent.style1.pin-style.pin-start.woff{
+    background-color:#000 !important;
+}
+.header-style1 .display-tc h1 {
+    font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+}
+
+ @media only screen and (min-width: 480px) and (max-width: 639px) {
+.header-section .logo {
+  margin-left:0px !important;
+}
+.nodisplay{
+	display:none;
+}
+.header-section.transparent.pin-start.off, .header-section.transparent.style1.pin-style.pin-start.woff{
+    background-color:#000 !important;
+}
+.header-style1 .display-tc h1 {
+    font-size: 40px;
+}
+.header-style1 .display-tc h2 {
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+}
+
+ @media only screen and (max-width: 479px) {
+.header-section .logo {
+  margin-left:0px !important;
+}
+.nodisplay{
+	display:none;
+}
+.header-section.transparent.pin-start.off, .header-section.transparent.style1.pin-style.pin-start.woff{
+    background-color:#000 !important;
+}
+.header-style1 .display-tc h1 {
+    font-size: 28px;
+}
+.header-style1 .display-tc h2 {
+    font-size: 16px;
+}
+
+
+
+
+
+
+}

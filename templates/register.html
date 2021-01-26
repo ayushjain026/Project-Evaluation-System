@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="clearfix"></div>
+  <div class="section-lg counters m-bottom4">
+    <div class="container">
+      <div class="row">
+        <div class="reg_form">
+
+
+          <form action="hod/hod_register/" class="sky-form" id="sky-form" enctype="multipart/form-data" method="post">
+
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <header>Don't have an Account? Register Now!</header>
+            <fieldset>
+              <div class="section">
+                <label class="input"> <i class="icon-append fa fa-user"></i>
+                  <input type="text" placeholder="Username" name="name">
+                  <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                  <input type="email" placeholder="Email address" name="email">
+                  <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <i class="icon-append fa fa-lock"></i>
+                  <input type="password" id="password" placeholder="Password" name="password">
+                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <i class="icon-append fa fa-lock"></i>
+                  <input type="password" placeholder="Confirm password" name="passwordConfirm">
+                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+              </div>
+
+              <div class="section">
+                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
+                  <input type="text" placeholder="Department" name="department">
+                  <b class="tooltip tooltip-bottom-right">Write your full department name</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
+                  <input type="text" placeholder="College Website Url" name="college_url">
+                  <b class="tooltip tooltip-bottom-right">Require to validate your College Website</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
+                  <input type="number" placeholder="College phone no. " name="phone_number">
+                  <b class="tooltip tooltip-bottom-right">Please enter your Phone Number for verification</b> </label>
+              </div>
+              <div class="section">
+                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
+                  Photo of College ID Card
+                  <input type="file" placeholder="Photo of College ID Card" name="id_card_image">
+                  <b class="tooltip tooltip-bottom-right">Please Share Image of your College Id Card For Validation</b> </label>
+              </div>
+
+              <input type="hidden" value="False" name="verification">
+              <input type="hidden" value="1" name="user_type">
+
+            </fieldset>
+            <footer>
+              <button class="btn button" type="submit">Submit</button>
+            </footer>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
