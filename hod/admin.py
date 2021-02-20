@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import hod_registration
+from . models import *
 
 # Register your models here.
 
@@ -18,3 +18,4 @@ class hod_admin(admin.ModelAdmin):
 
 
 admin.site.register(hod_registration, hod_admin)
+admin.site.register(college_details)

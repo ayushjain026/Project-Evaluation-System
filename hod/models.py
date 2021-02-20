@@ -15,6 +15,13 @@ class hod_registration(models.Model):
     user_type = models.IntegerField()
 
 
+class college_details(models.Model):
+    college_name = models.CharField(max_length=100)
+    college_url = models.CharField(max_length=2048)
+    college_email = models.EmailField()
+    college_phone_number = models.CharField(max_length=12)
+
+
 
 
 
