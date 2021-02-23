@@ -37,7 +37,7 @@ h4 a{
 	background: url(../images/logo.png) no-repeat left 12px;
 }
 
-/* Topbar 
+/* Topbar
  ------------------------------ */
 .temp-header{
 	margin: 0;
@@ -58,7 +58,7 @@ h4 a{
 .top-links ul.top-right-list{
 	margin:0;
 	padding:0;
-}	
+}
 .top-links ul.top-right-list li{
 	list-style:none;
 	display:inline-block
@@ -618,7 +618,7 @@ ul.address-info li {
     line-height: 1;
     margin-right: 10px;
 }
-/* =========== Footer styles ============= */	
+/* =========== Footer styles ============= */
 footer {
 	width: 100%;
 	float: left;
@@ -683,7 +683,7 @@ ul.social-icons li a:hover{
 	border-radius: 5px;
 }
 
-/* resets 
+/* resets
  ------------------------------ */
 .m-auto{
 	margin:auto;

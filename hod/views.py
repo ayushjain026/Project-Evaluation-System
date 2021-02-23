@@ -5,10 +5,16 @@ from .models import *
 
 
 def index(request):
-    return render(request, "register.html")
+    return render(request, "index.html")
+
+#def index(request):
+#    return render(request, "register.html")
 
 
 def hod_register(request):
+    #return render(request,"register.html")
+    #return render(request, "contact.html")
+    return render(request, "aboutus.html")
     if request.method == 'POST':
         form = HodForm(request.POST, request.FILES)
         if form.is_valid():
