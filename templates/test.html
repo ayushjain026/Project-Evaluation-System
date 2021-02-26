@@ -1,16 +1,30 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 
-<form action="/action_page.php">
-  <fieldset><br><br><br><br>
-    <legend>Personalia:</legend>
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" value="John"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" value="Doe"><br><br>
-    <input type="submit" value="Submit">
-  </fieldset>
-</form>
+    <section>
+{#    <center>#}
+      <div class="container">
+          <div class="col-lg-7">
+            <form action="/hod/test_save/" class="contact-form text-left" method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+              <h2>College Details</h2>
+              <div class="form-group mb-4">
+              <input type="file" name="image" id="fileToUpload" >
+              </div>
+
+              <input type="hidden" name="hod_verification" value="0">
+              <input type="hidden" name="user_type " value="2">
+
+              <div class="form-group">
+                <input type="submit" value="Send message" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{#    </center>#}
+    </section>
 
 {% endblock %}

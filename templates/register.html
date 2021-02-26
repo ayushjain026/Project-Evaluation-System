@@ -2,75 +2,76 @@
 {% load static %}
 {% block content %}
 
-<div class="clearfix"></div>
-  <div class="section-lg counters m-bottom4">
-    <div class="container">
-      <div class="row">
-        <div class="reg_form">
-
-
-          <form action="hod/hod_register/" class="sky-form" id="sky-form" enctype="multipart/form-data" method="post">
-
-            {% csrf_token %}
-            {{form.as_p}}
-
-            <header>Don't have an Account? Register Now!</header>
-            <fieldset>
-              <div class="section">
-                <label class="input"> <i class="icon-append fa fa-user"></i>
-                  <input type="text" placeholder="Username" name="name">
-                  <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+    <section>
+{#    <center>#}
+      <div class="container">
+          <div class="col-lg-7">
+            <form action="/hod/hod_register/" class="contact-form text-left" method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+              <h2>College Details</h2>
+              <div class="form-group mb-4">
+                <label>College Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="college_name" placeholder="e.g. U.V.Patel College Of Engineering" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
-                  <input type="email" placeholder="Email address" name="email">
-                  <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+              <div class="form-group mb-4">
+                <label>Phone Number<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="college_phone_number" placeholder="9428656325" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <i class="icon-append fa fa-lock"></i>
-                  <input type="password" id="password" placeholder="Password" name="password">
-                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+              <div class="form-group mb-4">
+                <label>Department Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="college_department_name " placeholder="Computer Engineering" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <i class="icon-append fa fa-lock"></i>
-                  <input type="password" placeholder="Confirm password" name="passwordConfirm">
-                  <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+              <div class="form-group mb-4">
+                <label>College URL<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="college_url" placeholder="ganpatuniversity.ac.in" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Email-Id<sup class="text-primary">&#10033;</sup></label>
+                <input type="email" name="college_email" placeholder="abc12@gmail.com" class="form-control">
               </div>
 
-              <div class="section">
-                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
-                  <input type="text" placeholder="Department" name="department">
-                  <b class="tooltip tooltip-bottom-right">Write your full department name</b> </label>
+              <br>
+
+              <h2>Personal Details</h2>
+              <div class="form-group mb-4">
+                <label>Full Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="hod_fullname" placeholder="e.g. Johnny Depp" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
-                  <input type="text" placeholder="College Website Url" name="college_url">
-                  <b class="tooltip tooltip-bottom-right">Require to validate your College Website</b> </label>
+              <div class="form-group mb-4">
+                <label>Phone Number<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="hod_phone_number" placeholder="985963289" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
-                  <input type="number" placeholder="College phone no. " name="phone_number">
-                  <b class="tooltip tooltip-bottom-right">Please enter your Phone Number for verification</b> </label>
+              <div class="form-group mb-4">
+                <label>Email-Id<sup class="text-primary">&#10033;</sup></label>
+                <input type="email" name="hod_email" placeholder="Johnnydeep!gmail.com" class="form-control">
               </div>
-              <div class="section">
-                <label class="input"> <!--<i class="icon-append fa fa-lock"></i>-->
-                  Photo of College ID Card
-                  <input type="file" placeholder="Photo of College ID Card" name="id_card_image">
-                  <b class="tooltip tooltip-bottom-right">Please Share Image of your College Id Card For Validation</b> </label>
+              <div class="form-group mb-4">
+                <label>User Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="hod_username" placeholder="e.g. JD" class="form-control">
+              </div>
+{#              <div class="form-group mb-4">#}
+{#                <label>Password<sup class="text-primary">&#10033;</sup></label>#}
+{#                <input type="password"  class="form-control">#}
+{#              </div>#}
+              <div class="form-group mb-4">
+                <label>Confirm Password<sup class="text-primary">&#10033;</sup></label>
+                <input type="password" name="hod_password" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+              <input type="file" name="hod_id_card_image" id="fileToUpload" >
               </div>
 
-              <input type="hidden" value="False" name="verification">
-              <input type="hidden" value="1" name="user_type">
+              <input type="hidden" name="hod_verification" value="0">
+              <input type="hidden" name="user_type " value="2">
 
-            </fieldset>
-            <footer>
-              <button class="btn button" type="submit">Submit</button>
-            </footer>
-          </form>
-
-
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+{#    </center>#}
+    </section>
+
 {% endblock %}

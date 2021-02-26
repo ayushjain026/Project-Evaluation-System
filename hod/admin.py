@@ -6,16 +6,19 @@ from . models import *
 
 class hod_admin(admin.ModelAdmin):
     list_display = [
-        "name",
-        "password",
-        "department",
-        "college_url",
-        "email",
-        "phone_number",
-        "id_card_image",
-        "verification",
-        "user_type" ]
+        'hod_fullname',
+        'hod_username',
+        'hod_password',
+        'college_name',
+        'department',
+        'college_url',
+        'hod_email',
+        'hod_phone_number',
+        'hod_id_card_image',
+        'hod_verification',
+        'user_type',
+         ]
 
 
-admin.site.register(hod_registration, hod_admin)
+admin.site.register(hod_registration)
 admin.site.register(college_details)
