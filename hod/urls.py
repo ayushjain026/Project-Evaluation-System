@@ -9,7 +9,8 @@ urlpatterns = [
     path("index/", views.index),
     path("test_save/", views.test_save),
     path("test/", views.test),
-    # path('image_upload', hotel_image_view, name = 'image_upload'),
+    path('hod_login/',views.hod_login),
+    path('hod_dashboard/', views.hod_dashboard),
     # path('success', success, name = 'success'),
 ]
 if settings.DEBUG:

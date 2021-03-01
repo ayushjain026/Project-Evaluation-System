@@ -10,7 +10,7 @@ class hod_admin(admin.ModelAdmin):
         'hod_username',
         'hod_password',
         'college_name',
-        'department',
+        'college_department_name',
         'college_url',
         'hod_email',
         'hod_phone_number',
@@ -20,5 +20,5 @@ class hod_admin(admin.ModelAdmin):
          ]
 
 
-admin.site.register(hod_registration)
+admin.site.register(hod_registration, hod_admin)
 admin.site.register(college_details)

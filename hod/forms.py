@@ -19,7 +19,6 @@ class HodForm(forms.ModelForm):
                 "user_type",
                 "college_url",
             ]
-            print(fields)
         except Exception as e:
             print(f"Exception occur is {e}")
         print("\n\n\n\n\nIn form")

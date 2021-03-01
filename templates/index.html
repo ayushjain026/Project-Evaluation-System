@@ -5,4 +5,14 @@
     <br><br><br>
     <h1>This is Index</h1>
 
+    {% for message in messages %}
+        <script>
+        alert('{{message}}')
+        </script>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+            <h2>Welcome {{ username }}</h2>
+    {% endif %}
+
 {% endblock %}
