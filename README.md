@@ -11,3 +11,7 @@ Steps
 - migrate
   ```
   $ python manage.py migrate
+    ```
+- To install All Requirements
+  ```
+  pip install requirements.txt

@@ -76,7 +76,7 @@ def hod_login(request):
             print(valid, user)
             if user is not None and valid:
                 auth.login(request, user)
-                return redirect("/")
+                return render(request,"hod_dashboard.html")
             else:
                 messages.info(request, "Wrong email or password!!")
                 return redirect("/")
