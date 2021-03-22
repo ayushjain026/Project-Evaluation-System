@@ -11,7 +11,8 @@ urlpatterns = [
     path("test/", views.test),
     path('hod_login/',views.hod_login),
     path('hod_dashboard/', views.hod_dashboard),
-    # path('success', success, name = 'success'),
+    path("logout/", views.logout, name="logout"),
+    path("add_faculty/", views.add_faculty),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

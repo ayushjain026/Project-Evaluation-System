@@ -3,7 +3,9 @@
 {% block content %}
 
     <section>
-{#    <center>#}
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
       <div class="container">
           <div class="col-lg-7">
             <form action="/hod/hod_register/" class="contact-form text-left" method = "post" enctype="multipart/form-data">
@@ -54,7 +56,7 @@
 {#                <input type="password"  class="form-control">#}
 {#              </div>#}
               <div class="form-group mb-4">
-                <label>Confirm Password<sup class="text-primary">&#10033;</sup></label>
+                <label>Password<sup class="text-primary">&#10033;</sup></label>
                 <input type="password" name="hod_password" class="form-control">
               </div>
               <div class="form-group mb-4">
@@ -71,7 +73,6 @@
           </div>
         </div>
       </div>
-{#    </center>#}
     </section>
 
 {% endblock %}

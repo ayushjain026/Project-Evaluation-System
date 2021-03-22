@@ -1,0 +1,71 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 30px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    width: 100%;
+    padding: 30px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+
+    <section class="left_padding">
+    <center>
+        <pre>
+            {% for message in messages %}
+            <h3 class="middle">
+                        {{message}}
+            </h3>
+            {% endfor %}
+        </pre>
+
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/hod/add_faculty/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+                <h2><B>Add Faculty</B></h2>
+              <div class="form-group mb-4">
+                <label>Department Name:<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="department" placeholder="e.g. Computer Engineering" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>View Demo File to upload<sup class="text-primary">&#10033;</sup></label><br>
+                <a href="https://docs.google.com/spreadsheets/d/1LRBAMhFTKvVXBlVmkH733975IgSaEphz/edit#gid=867476596" class="btn btn-primary" target="_blank">Download sample.csv file</a>
+              </div>
+              <div class="form-group mb-4">
+                <label>Upload file_name.csv here 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="file" name="csv_file" class="file-dummy">
+              </div>
+
+              <input type="hidden" name="hod_name" value="{{user.username}}">
+              <input type="hidden" name="hod_verification" value="false">
+              <input type="hidden" name="user_type " value="2">
+
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </center>
+    </section>
+
+{% endblock %}

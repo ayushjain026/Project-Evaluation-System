@@ -1,4 +1,6 @@
 from django import forms
+
+from faculty.models import temp_csv
 from .models import *
 
 
@@ -21,13 +23,11 @@ class HodForm(forms.ModelForm):
             ]
         except Exception as e:
             print(f"Exception occur is {e}")
-        print("\n\n\n\n\nIn form")
 
 
 class clg_detail(forms.ModelForm):
     class Meta:
         try:
-            print("\n\n\n\n\nstarting form")
             model = college_details
             fields = [
                 "college_name",
@@ -37,11 +37,25 @@ class clg_detail(forms.ModelForm):
                 "college_department_name",
             ]
         except Exception as e:
-            print(f"\n\n\n\n\nException occur is {e}")
-        print("\n\n\n\n\nIn form")
+            print(f"Exception occur is {e}")
+
 
 
 class testForm(forms.ModelForm):
     class Meta:
         model = test
         fields = ['image']
+
+
+class csvForm(forms.ModelForm):
+    class Meta:
+        try:
+            model = temp_csv
+            fields = ("csv_file",
+                     "department",
+                     "hod_name",
+                      )
+        except Exception as e:
+            print(f"\n\n\n\n\nException occur is {e}")
+
+

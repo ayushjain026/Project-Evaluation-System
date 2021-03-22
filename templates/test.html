@@ -1,30 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base_hod.html' %}
 {% load static %}
 {% block content %}
 
-    <section>
-{#    <center>#}
-      <div class="container">
-          <div class="col-lg-7">
-            <form action="/hod/test_save/" class="contact-form text-left" method = "post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-              <h2>College Details</h2>
-              <div class="form-group mb-4">
-              <input type="file" name="image" id="fileToUpload" >
-              </div>
-
-              <input type="hidden" name="hod_verification" value="0">
-              <input type="hidden" name="user_type " value="2">
-
-              <div class="form-group">
-                <input type="submit" value="Send message" class="btn btn-primary">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-{#    </center>#}
-    </section>
 
 {% endblock %}
