@@ -16,6 +16,15 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'aapokemon91@gmail.com'
+EMAIL_HOST_PASSWORD = 'kspmar026'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -24,6 +33,7 @@ SECRET_KEY = '#hh+5jdz@&=7#z6jex=_l&#ou7d0m2gbcelgld^9cr6vp8g9-!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,6 +50,7 @@ INSTALLED_APPS = [
     'hod.apps.HodConfig',
     'faculty.apps.FacultyConfig',
 ]
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,0 +1,47 @@
+1) Download python and install it:
+
+	https://www.python.org/downloads/
+
+ It will ask you to set path variables in environment variables automatically.
+
+2) Install django framework 
+	type in cmd: pip install django
+ we can install any framework or library using cmd pip
+
+3) To create new project in any directory 
+
+	type: django-admin.py startproject project_name
+
+	then move to that folder: cd project_name
+
+	then run: python manage.py runserver   - it will start your project at localhost:8000
+
+4) install mysql from here: 
+	https://dev.mysql.com/downloads/mysql/
+
+and install it without any error.
+
+5) then we have to connect django with mysql server, for this type in cmd:
+ 	
+	pip install mysql-connector-django
+
+6) in settings.py update the database configurations:
+	
+	DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': database_name',
+        
+    }
+}
+ 
+	
+
+7) then install heidisql tool for managing our database
+
+	https://www.heidisql.com/download.php
+	
+   here create a database of the same name which you give the name in settings.py {databasee_name ,here}
+
+
+---------------------------------------------------------

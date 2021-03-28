@@ -10,6 +10,8 @@ class faculty(models.Model):
     faculty_email = models.EmailField(default='abc@gmail.com',null=True)
     subjects = models.CharField(max_length=50,null=True)
     user_type = models.IntegerField(null=True)
+    hod_email = models.EmailField(null=True)
+    hod_department_subject = models.CharField(max_length=60,null=True)
 
 
 class temp_csv(models.Model):

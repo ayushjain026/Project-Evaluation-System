@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <br><br><br><br><br><br>
+	<div class="d-flex flex-column">
+		  <p class="m-auto p-2">
+              We have send you an email verification to your registered email address please verify your email
+		  </p>
+		  <p class="m-auto p-2"><a href="{% url 'index' %}">Return to home page</a></p>
+	</div>
+</div>
+
+{% endblock %}

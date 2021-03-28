@@ -1,0 +1,87 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    width:  0px 20px 0px 20px;
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+{% for faculty in faculty_into %}
+    <section class="left_padding">
+    <center>
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/hod/edit_faculty/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+                <h2><B>Faculty Information</B></h2>
+              <div class="form-group mb-4">
+                <label>Faculty Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_fname" value="{{ faculty.fullname }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Username<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_uname" value="{{ faculty.username }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>E-mail<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_email" value="{{ faculty.faculty_email }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Subjects<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_sub" value="{{ faculty.subjects }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Department<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_dep" value="{{ faculty.college_department_name }}" class="form-control">
+              </div>
+              <input type="hidden" value="{{ faculty.id }}" name="id">
+{#              <div class="form-group mb-4">#}
+{#                <label>View Demo File to upload<sup class="text-primary">&#10033;</sup></label><br>#}
+{#                <a href="https://drive.google.com/file/d/1o-nBH49FVbTQBPwhMhq46MSECMjW9n0i/view?usp=sharing" class="btn btn-primary" target="_blank">Download sample.csv file</a>#}
+{#              </div>#}
+{#              <div class="form-group mb-4">#}
+{#                <label>Upload file_name.csv here 👇<sup class="text-primary">&#10033;</sup></label>#}
+{#                <input type="file" name="csv_file" class="file-dummy">#}
+{#              </div>#}
+{##}
+{#              <input type="hidden" name="hod_name" value="{{user.username}}">#}
+{#              <input type="hidden" name="hod_verification" value="false">#}
+{#              <input type="hidden" name="user_type " value="2">#}
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+    </center>
+    </section>
+
+{% endblock %}

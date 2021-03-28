@@ -47,6 +47,7 @@
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Min 8 characters" class="form-control">
               </div>
+                <a href="{% url 'password_reset' %}">Forget your password?</a>
               <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary">
               </div>
@@ -78,6 +79,14 @@
                   <div class="dropdown-menu"><a href="faq.html" class="dropdown-item">FAQ</a>
                       <a href="contact.html" class="dropdown-item">Contact</a><a href="text.html" class="dropdown-item">Text Page</a></div></li>
                 <li><a href="/hod/hod_register/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Registration </a></li>
+{#                <li>#}
+{#                <form action="/hod/email_verify/" method="POST">#}
+{#                    {% csrf_token %}#}
+{#                    <input type="hidden" name="id" value="32">#}
+{#                    <input type="hidden" name="gmail" value="pkjain73@gmail.com">#}
+{#                    <input type="submit" value="email_verify" class="btn btn-primary navbar-btn ml-0 ml-lg-3">#}
+{#                </form>#}
+{#                </li>#}
             </ul>
 
               {% if user.is_authenticated %}

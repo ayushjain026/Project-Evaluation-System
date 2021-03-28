@@ -7,13 +7,13 @@
 
     {% for message in messages %}
         <script>
-        alert('{{message}}')
+            alert('{{message}}')
         </script>
     {% endfor %}
 
     {% if user.is_authenticated %}
-        <h2>Welcome, {{user.first_name}}</h2>
-        {% if user.is_staff == 1 %}
+        <h2>Welcome,HOD {{user.first_name}}</h2>
+        {% if user.last_name == '1' %}
         <h2><a href="/hod/hod_dashboard/">Dashboard</a>
         {% endif %}
     {% endif %}
