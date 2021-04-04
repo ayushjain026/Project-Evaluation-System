@@ -17,7 +17,7 @@ class HodForm(forms.ModelForm):
                 "hod_email",
                 "hod_phone_number",
                 "hod_id_card_image",
-                "hod_verification",
+                "verification",
                 "user_type",
                 "college_url",
             ]

@@ -1,0 +1,163 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+.select{
+    width: 38%;
+    padding: 2px;
+    transition: background 0.3s ease-in-out;
+    background-color: #30a5ff;
+}
+.middle{
+    {#width:  0px 0px 0px 0px;#}
+    {#padding: 0px 0px 0px 0px;#}
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+
+
+<pre>
+    {% for message in messages %}
+    <h3 class="middle">
+                {{message}}
+    </h3>
+    {% endfor %}
+</pre>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+{#					<em class="fa fa-home"></em>#}
+				</a></li>
+{#				<li class="active">Evaluation</li>#}
+			</ol>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+{#				<h1 class="page-header">Project Evaluation</h1>#}
+			</div>
+		</div><!--/.row-->
+
+<section class="left_padding">
+    <div class="panel panel-container">
+        <div class="row">
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-teal panel-widget border-right">
+                    <div class="row no-padding">
+                        <div><em class="fa fa-bar-chart"></em>
+                        <div class="large">
+                            <a href="{% url "total_events" %}" size="1000">{{total_events}}</a>
+                        </div>
+                        <div class="text-muted">Total Events Created</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-blue panel-widget border-right">
+                    <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+                        <div class="large">
+                            <a href="{% url 'view_history' %}">{{ count }}</a>
+                        </div>
+                        <div class="text-muted">View Work History</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-orange panel-widget border-right">
+                    <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+                        <div class="large">
+                            <a href="{% url 'student_desc' %}">{{count}}</a>
+                        </div>
+                        <div class="text-muted">Total Student</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                <div class="panel panel-red panel-widget ">
+                    <div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
+                        <div class="large">Search</div>
+							<div class="text-muted">Comming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="container">
+          <div class="col-lg-7">
+            <form method = "POST" action="/faculty/create_submission/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+                 <fieldset>
+                <legend><h2><B>Create Submission</B></h2></legend>
+
+                <div class="form-group mb-4">
+                    <label>Title for Submission 👇<sup class="text-primary">&#10033;</sup></label><br>
+                    <input type="text" name="submission_title" class="form-control">
+                </div>
+
+                <label>Enter Student from Student in Semister 👇<sup class="text-primary">&#10033;</sup></label><br>
+                  <select name="for_semister" class="select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+              <br>
+              <div class="form-group mb-4">
+                <label>Enter Last Submission date 👇<sup class="text-primary">&#10033;</sup></label><br>
+                <input type="datetime-local" name="submission_last_date" class="form-control">
+              </div>
+
+              <div class="form-group mb-4">
+                <label>Submission Description Here 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_file_description" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Submission Comments 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_comment_faculty" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Maximin Marks for Evaluation 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="number" name="submission_marks" class="form-control">
+              </div>
+
+              <input type="hidden" name="faculty_email_auth" value="{{user.email}}">
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+
+              <br><br>
+{#              {% for faculty_in_system in faculty_in_system %}#}
+{#                  <b><pr>{{ faculty_in_system }} is already registered please check again</pr></b>#}
+{#              {% endfor %}#}
+            </fieldset>
+            </form>
+          </div>
+    </div>
+
+
+
+</section>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

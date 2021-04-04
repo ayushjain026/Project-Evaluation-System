@@ -1,0 +1,99 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+    .success {
+      display: none;
+    }
+.select{
+    width: 38%;
+    padding: 2px;
+    transition: background 0.3s ease-in-out;
+    background-color: #30a5ff;
+}
+.middle{
+    width:  0px 20px 0px 20px;
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+
+    <section class="left_padding">
+    <center>
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/faculty/add_student/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+                <h2><B>Add Student</B></h2>
+                <label>Enter Student Current Semister<sup class="text-primary">&#10033;</sup></label><br>
+                  <select name="sem" class="select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+              <br>
+              <div class="form-group mb-4">
+                <label>Upload file_name.csv here 👇<sup class="text-primary">&#10033;</sup></label><br>
+                <a href="https://drive.google.com/file/d/1ST3h2do2QrsVS53fNMANy4KQIrc5ZAr3/view?usp=sharing" class="btn btn-primary" target="_blank">Download sample.csv file</a>
+              </div>
+              <div class="form-group mb-4">
+                <label>Upload file_name.csv here 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="file" name="csv_file" class="file-dummy">
+                <label>NOTE: It will take 30-40 Seconds to generate Login credentials</label>
+              </div>
+
+              <input type="hidden" name="faculty_name" value="{{user.username}}">
+              <input type="hidden" name="verification" value="False">
+              <input type="hidden" name="user_type " value="3">
+
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+
+              <br><br>
+{#              {% for faculty_in_system in faculty_in_system %}#}
+{#                  <b><pr>{{ faculty_in_system }} is already registered please check again</pr></b>#}
+{#              {% endfor %}#}
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </center>
+    </section>
+
+{% endblock %}
+
+
+
+
+
+
+

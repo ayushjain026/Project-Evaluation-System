@@ -15,7 +15,7 @@ class hod_admin(admin.ModelAdmin):
         'hod_email',
         'hod_phone_number',
         'hod_id_card_image',
-        'hod_verification',
+        'verification',
         'user_type',
          ]
 

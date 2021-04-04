@@ -1,0 +1,153 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+    padding-bottom: 200px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    {#width:  0px 0px 0px 0px;#}
+    {#padding: 0px 0px 0px 0px;#}
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+
+{% if user.is_authenticated %}
+    {% for info in user_info %}
+        <section class="left_padding">
+          <div class="container">
+              <div class="col-lg-7">
+                <form method = "post" action="/student/profile/" enctype="multipart/form-data" class="contact-form text-left" >
+                    {% csrf_token %}
+                    <h2><B>Profile</B></h2>
+                  <div class="form-group mb-4">
+                    <label>Full Name<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_fname" value="{{ info.fullname }}" class="form-control" required>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Username<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_uname" value="{{ info.username }}" readonly class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>E-mail<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_email" readonly value="{{ info.student_email }}" class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Respected Faculty E-mail<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="fac_email" readonly value="{{ info.faculty_email }}" class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Password<sup class="text-primary">&#10033;</sup></label>
+                    <input type="password" name="stu_pass" class="form-control">
+                  </div>
+{#                    {% for sub in sub %}#}
+{#                        {{ sub }}#}
+{#                        {{ sub.subject }}#}
+{#                    {% endfor %}#}
+                    <div class="form-group mb-4">
+                    <label>Subjects<sup class="text-primary">&#10033;</sup></label>
+                    {% for subj in sub %}
+                        <input type="text" name="stu_sub" readonly value="{{ subj.subject }}" class="form-control">
+                    {% endfor %}
+                    </div>
+
+                  <div class="form-group mb-4">
+                    <label>Department <sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_department" readonly class="form-control" value="{{ info.department }}">
+                  </div>
+                    <div class="form-group mb-4">
+                    <label>Project Defination<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_Proj_def" class="form-control" value="{{ info.project_defination }}">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Group<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" readonly name="stu_grp" class="form-control" value="{{ info.group }}">
+                  </div>
+
+                  <input type="hidden" value="{{ info.id }}" name="id">
+                  {% if user.email ==  info.student_email %}
+                  <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                  {% endif %}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+    {% endfor %}
+
+{% else %}
+    {% for info in user_info %}
+        <section class="left_padding">
+        <center>
+          <div class="container">
+              <div class="col-lg-7">
+                <form method = "post" action="/hod/profile/" enctype="multipart/form-data" class="contact-form text-left" >
+                    {% csrf_token %}
+                    <h2><B>Profile</B></h2>
+                  <div class="form-group mb-4">
+                    <label>Full Name<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_fname" readonly value="{{ info.fullname }}" class="form-control" required>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Username<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_uname" value="{{ info.username }}" readonly class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>E-mail<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_email" readonly value="{{ info.student_email }}" class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Respected Faculty E-mail<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="fac_email" readonly value="{{ info.faculty_email }}" class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Password<sup class="text-primary">&#10033;</sup></label>
+                    <input type="password" readonly name="stu_pass" class="form-control">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Department <sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" name="stu_department" readonly class="form-control" value="{{ info.department }}">
+                  </div>
+                    <div class="form-group mb-4">
+                    <label>Project Defination<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" readonly name="stu_Proj_def" class="form-control" value="{{ info.project_defination }}">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label>Group<sup class="text-primary">&#10033;</sup></label>
+                    <input type="text" readonly name="stu_grp" class="form-control" value="{{ info.group }}">
+                  </div>
+
+                  <input type="hidden" value="{{ info.id }}" name="id">
+                </form>
+              </div>
+            </div>
+    {% endfor %}
+
+{% endif %}
+    </center>
+    </section>
+
+{% endblock %}

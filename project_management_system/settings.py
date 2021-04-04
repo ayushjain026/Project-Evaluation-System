@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hod.apps.HodConfig',
     'faculty.apps.FacultyConfig',
+    'student.apps.StudentConfig',
 ]
+
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [

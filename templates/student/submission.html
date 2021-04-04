@@ -1,0 +1,121 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 25px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+    .success {
+      display: none;
+    }
+.select{
+    width: 38%;
+    padding: 2px;
+    transition: background 0.3s ease-in-out;
+    background-color: #30a5ff;
+}
+.middle{
+    {#width:  0px 20px 0px 20px;#}
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+
+
+    <section class="left_padding">
+        <center>
+    {% for event_into in event_into %}
+       <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>   <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/student/submission/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+{#                <a href="{% url 'back' %}"><b>Back</b></a>#}
+                <h2><B>{{ event_into.submission_title }}</B></h2>
+{#              <div class="form-group mb-4">#}
+{#                <label>Submission Title<sup class="text-primary">&#10033;</sup></label>#}
+{#                <input type="text" name="event_title" value="{{ event_into.submission_title }}" readonly class="form-control">#}
+{#              </div>#}
+              <div class="form-group mb-4">
+                <label>Submission description 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_title " value="{{ event_into.submission_file_description }}" readonly class="form-control">
+              </div>
+              <div class="form-group mb-4">
+{#                <label>Semister<sup class="text-primary">&#10033;</sup></label>#}
+                <input type="hidden" name="for_semister " value="{{ event_into.for_semister }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Event Start Date 👇<sup class="text-primary">&#10033;</sup></label><br>
+{#                 <label class="text-primary"> &#10033;{{ event_into.created_date }}</label>#}
+                <input type="text" readonly name="event_stat_date" value="{{ event_into.created_date }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Event Last Date 👇<sup class="text-primary">&#10033;</sup></label><br>
+{#                <label class="text-primary"> &#10033;{{ event_into.submission_last_date }}</label>#}
+                <input type="text" readonly name="event_last_date" value="{{ event_into.submission_last_date }}" class="form-control">
+              </div>
+                {% if event_into.submission_comment_faculty != "none" %}
+              <div class="form-group mb-4">
+                <label>Comment 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="event_comment" readonly value="{{ event_into.submission_comment_faculty }}" class="form-control">
+              </div>
+                {% endif %}
+              <div class="form-group mb-4">
+                <label>Total Marks 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="number" readonly name="total_marks" value="{{ event_into.submission_marks }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Your Status : </label>
+                  {% if submission_status == True %}
+                      <label style="color:green;">Submited Sucessfull</label>
+                  {% else %}
+                      <label style="color:red;">Not Submited</label>
+                  {% endif %}
+              </div>
+            {% if submission_status == True %}
+              <div class="form-group mb-4">
+                <label>Submit your Document here 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" value="Your Document was submited sucessfully" name="submission_file " class="file-dummy">
+              </div>
+            {% else %}
+              <div class="form-group mb-4">
+                <label>Submit your Document here 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="file" name="submission_file " class="file-dummy">
+              </div>
+            {% endif %}
+              <div class="form-group mb-4">
+                <label>Submit a comment in case of query 👇 {{ event.id }}<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_comment_student" class="form-control">
+              </div>
+              <input type="hidden" value="{{event_into.id}}" name="event_id">
+              <input type="hidden" value="{{ user.first_name }}" name="student_name">
+              <input type="hidden" value="{{user.id}}" name="student_id ">
+              <input type="hidden" value="{{event_into.faculty_email_auth}}" name="faculty_email_auth">
+              <input type="hidden" value="{{event_into.hod_email_auth}}" name="hod_email_auth ">
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+{% endfor %}
+    </center>
+    </section>
+{% endblock %}

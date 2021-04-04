@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>HOD - Dashboard</title>
+	<title>Project Evaluation System</title>
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/datepicker3.css' %}" rel="stylesheet">
@@ -25,7 +25,7 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body p-4 p-lg-5">
-            <form action="hod_login" class="login-form text-left" method = "post">
+            <form action="/hod/hod_login/" class="login-form text-left" method = "post">
               {% csrf_token %}
               <div class="form-group mb-4">
                 <label>Email address</label>
@@ -51,7 +51,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-				<a class="navbar-brand" href="#"><span>HOD</span>Admin</a>
+				<a class="navbar-brand" href="#"><span>Project Management System</span></a>
             </div>
 		</div><!-- /.container-fluid -->
 	</nav>
@@ -69,32 +69,26 @@
 		<div class="divider"></div>
 
 		<ul class="nav menu">
-            <li ><a href="/hod/hod_dashboard/"><em class="fa fa-dashboard">&nbsp;</em> Hod Dashboard</a></li>
-			<li ><a href="/hod/add_faculty/">{#<em class="fa fa-chart">&nbsp;</em>#} Add Faculty</a></li>
-            <li ><a href="/hod/faculty_desc/">{#<em class="fa fa-toggle-off">&nbsp;</em>#} Faculty Desc</a>
-			<li><a href="/hod/profile/"><em class="fa fa-toggle-off">&nbsp;</em> Profile</a></li>
+        {% if user.last_name == '1' %}
+            <li ><a href="/hod/hod_dashboard/"> Hod Dashboard</a></li>
+			<li ><a href="/hod/add_faculty/">Add Faculty</a></li>
+            <li ><a href="/hod/faculty_desc/">Faculty Desc</a>
+			<li><a href="/hod/profile/">Profile</a></li>
+        {% elif user.last_name == '2' %}
+            <li><a href="/faculty/evaluation/">&nbsp Faculty Dashboard</a></li>
+			<li><a href="/faculty/add_student/">&nbsp;&nbsp Add Student</a></li>
+            <li><a href="/faculty/student_desc/">&nbsp Student Desc</a>
+            <li><a href="/faculty/total_events/">&nbsp Evaluation</a>
+			<li><a href="/faculty/create_notice/">&nbsp Notice</a>
+            <li><a href="/faculty/profile/">&nbsp Profile</a></li>
+        {% elif user.last_name == "3" %}
+            <li><a href="/student/dashboard/"> Dashboard </a></li>
+            <li><a href="/student/project/"> Project </a></li>
+			<li ><a href="/student/work_history/">Work History</a></li>
+            <li ><a href="/student/notice/">Notices</a>
+			<li><a href="/student/profile/?email={{ user.email }}">Profile</a></li>
+        {% endif %}
 
-{#            <li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>#}
-{#			<li><a href="/hod/faculty_desc/"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>#}
-{#			<li><a href="/hod/faculty_desc/"><em class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>#}
-{#			<li><a href="/hod/faculty_desc/"><em class="fa fa-toggle-off">&nbsp;</em> UI Elements</a></li>#}
-{#			<li><a href="/hod/faculty_desc/"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>#}
-{#			<li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>#}
-{#			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">#}
-{#				<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>#}
-{#				</a>#}
-{#				<ul class="children collapse" id="sub-item-1">#}
-{#					<li><a class="" href="#">#}
-{#						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1#}
-{#					</a></li>#}
-{#					<li><a class="" href="#">#}
-{#						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2#}
-{#					</a></li>#}
-{#					<li><a class="" href="#">#}
-{#						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3#}
-{#					</a></li>#}
-{#				</ul>#}
-{#			</li>#}
             {% if user.is_authenticated %}
 			<li><a href="{% url 'logout' %}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
             {% else %}

@@ -1,0 +1,96 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 25px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+    .success {
+      display: none;
+    }
+.select{
+    width: 38%;
+    padding: 2px;
+    transition: background 0.3s ease-in-out;
+    background-color: #30a5ff;
+}
+.middle{
+    {#width:  0px 20px 0px 20px;#}
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+
+    <section class="left_padding">
+        <center>
+    {% for project in student_project %}
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/student/project/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+              <h2><B>{{ event_into.submission_title }}</B></h2>
+
+              <div class="form-group mb-4">
+                <label>Your Project Defination 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_title " value="{{ project.project_defination }}" readonly class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Group Name 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_title " value="{{ project.group }}" readonly class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Group Partners 👇<sup class="text-primary">&#10033;</sup></label>
+                {% for grp_partner in grp_partner %}
+                <input type="text" name="submission_title " value="{{ grp_partner.fullname }}" readonly class="form-control">
+                {% endfor %}
+                </div>
+                <div class="form-group mb-4">
+                <label>Authorise Faculty Mail-ID 👇<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="submission_title " value="{{ project.faculty_email }}" readonly class="form-control">
+                </div>
+{#                {% for p_c_d in project_code_submission %}#}
+{#                    {{ p_c_d }}#}
+                    {% if p_c_d != False %}
+                        <div class="form-group mb-4">
+                        <label>Submit your Project code/zip-file here ✌👇<sup class="text-primary">&#10033;</sup></label>
+                        <input  readonly name="project_code_file" class="file-dummy" value="Project was submitted by {{ p_c_d_name }}">
+                        </div>
+                    {% else %}
+                        <div class="form-group mb-4">
+                        <label>Submit your Project code/zip-file here 👇<sup class="text-primary">&#10033;</sup></label>
+                        <input type="file" name="project_code_file" class="file-dummy">
+                        </div>
+                    {% endif %}
+{#                {% endfor %}#}
+                <input type="hidden" value="True" name="submition_status">
+                <input type="hidden" value={{ user.id }} name="student_id">
+                <input type="hidden" value="{{ project.fullname }}" name="student_submited_code">
+                <input type="hidden" value="{{ project.group }}" name="group_name">
+                <input type="hidden" value="{{ project.semister }}" name="semister">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+          </div>
+        </div>
+{% endfor %}
+    </center>
+    </section>
+{% endblock %}

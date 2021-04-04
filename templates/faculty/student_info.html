@@ -1,0 +1,150 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+    padding-bottom: 200px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    width:  0px 20px 0px 20px;
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+{% if user.is_authenticated %}
+
+{% for faculty in faculty_into %}
+    <section class="left_padding">
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/faculty/edit_student/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+{#                <a href="{% url 'back' %}"><b>Back</b></a>#}
+                <h2><B>Student Information</B></h2>
+              <div class="form-group mb-4">
+                <label>Student Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_fname" value="{{ faculty.fullname }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Username<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_uname" value="{{ faculty.username }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>E-mail<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_email" value="{{ faculty.student_email }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Subjects<sup class="text-primary">&#10033;</sup></label>
+              {% for subj in sub %}
+                <input type="text" name="fac_sub" value="{{ subj.subject }}" class="form-control">
+              {% endfor %}
+              </div>
+              <div class="form-group mb-4">
+                <label>Department<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_dep" value="{{ faculty.department }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Semister<sup class="text-primary">&#10033;</sup></label>
+                <input type="number" name="fac_sem" value="{{ faculty.semister }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Project Group Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="stu_grp" value="{{ faculty.group }}" readonly class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Project Defination<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="stu_def" value="{{ faculty.project_defination }}" readonly class="form-control">
+              </div>
+
+              <input type="hidden" value="{{ faculty.id }}" name="id">
+
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+
+{% else %}
+    {% for faculty in faculty_into %}
+    <section class="left_padding">
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/faculty/edit_student/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+{#                <a href="{% url 'back' %}"><b>Back</b></a>#}
+                <h2><B>Student Information</B></h2>
+              <div class="form-group mb-4">
+                <label>Student Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_fname" readonly value="{{ faculty.fullname }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Username<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_uname" readonly value="{{ faculty.username }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>E-mail<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_email" readonly value="{{ faculty.student_email }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Subjects<sup class="text-primary">&#10033;</sup></label>
+              {% for subj in sub %}
+                <input type="text" name="fac_sub" readonly value="{{ subj.subject }}" class="form-control">
+              {% endfor %}
+              </div>
+              <div class="form-group mb-4">
+                <label>Department<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="fac_dep" readonly value="{{ faculty.department }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Semister<sup class="text-primary">&#10033;</sup></label>
+                <input type="number" name="fac_sem" readonly value="{{ faculty.semister }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Project Group Name<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="stu_grp" readonly value="{{ faculty.group }}" readonly class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Project Defination<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="stu_def" readonly value="{{ faculty.project_defination }}" readonly class="form-control">
+              </div>
+
+              <input type="hidden" value="{{ faculty.id }}" name="id">
+
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+
+{% endif %}
+    </section>
+
+{% endblock %}

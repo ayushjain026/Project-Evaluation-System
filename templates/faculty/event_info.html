@@ -1,0 +1,90 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    width:  0px 20px 0px 20px;
+    padding: 0px 0px 0px 0px;
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+
+{% for event in event_info %}
+
+    <section class="left_padding">
+    <center>
+      <div class="container">
+          <div class="col-lg-7">
+            <form method = "post" action="/faculty/edit_event/" enctype="multipart/form-data" class="contact-form text-left" >
+                {% csrf_token %}
+{#                <a href="{% url 'back' %}"><b>Back</b></a>#}
+                <h2><B>Event Information</B></h2>
+              <div class="form-group mb-4">
+                <label>Submission Title<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="event_title" value="{{ event.submission_title }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Submission description<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="event_description" value="{{ event.submission_file_description }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Semister<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="event_sem" value="{{ event.for_semister }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Event Start Date<sup class="text-primary">&#10033;</sup></label><br>
+                 <label class="text-primary"> &#10033;{{ event.created_date }}</label>
+                <input type="datetime-local" name="event_stat_date" value="{{ event.created_date }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Event Last Date<sup class="text-primary">&#10033;</sup></label><br>
+                <label class="text-primary"> &#10033;{{ event.submission_last_date }}</label>
+                <input type="datetime-local" name="event_last_date" value="{{ event.submission_last_date }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Comment<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="event_comment" value="{{ event.submission_comment_faculty }}" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Marks<sup class="text-primary">&#10033;</sup></label>
+                <input type="number" name="event_marks" value="{{ event.submission_marks }}" class="form-control">
+              </div>
+              <input type="hidden" value="{{ event.id }}" name="id">
+
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+    </center>
+    </section>
+
+{% endblock %}

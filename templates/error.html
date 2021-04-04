@@ -1,0 +1,12 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+<center>
+<br>
+{% for message in messages %}
+    <h3>{{ message }}</h3>
+{% endfor %}
+</center>
+
+{% endblock %}

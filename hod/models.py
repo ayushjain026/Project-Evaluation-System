@@ -11,7 +11,7 @@ class hod_registration(models.Model):
     hod_email = models.EmailField(default='abc@gmail.com')
     hod_phone_number = models.CharField(max_length=12, default='123')
     hod_id_card_image = models.ImageField(upload_to='images/', default='')
-    hod_verification = models.BooleanField()
+    verification = models.BooleanField()
     user_type = models.IntegerField()
 
 

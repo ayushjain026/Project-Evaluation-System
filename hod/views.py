@@ -11,7 +11,7 @@ import pandas as pd
 from django.core.mail import send_mail
 from django.conf import settings
 
-
+from student.models import student
 
 
 def index(request):
@@ -57,9 +57,8 @@ def hod_register(request):
                         send_mail(subject, message, from_email, to_list, fail_silently=True)
                         print("\n\n\nGMAIL HAS BEEN SEND")
                         return render(request, "password/email_verify_send.html")
-
-                        messages.info(request, "Data Saved Sucessfully")
-                        return redirect("/")
+                        # messages.info(request, "Data Saved Sucessfully")
+                        # return redirect("/")
                     else:
                         return HttpResponse("Data not Saved \n")
                 except Exception as e:
@@ -77,33 +76,63 @@ def hod_register(request):
 @ensure_csrf_cookie
 @csrf_protect
 def hod_login(request):
-    if request.user.is_authenticated == False:
-        if request.method == "POST":
-            email = request.POST['email']
-            password = request.POST['password']
-            user = authenticate(username=email, password=str(password))
-            print(user)
-            user_data = hod_registration.objects.filter(hod_email=email)
-            # print(user_data)
-            valid = False
-            for i in user_data:
-                valid = i.hod_verification
-                print(valid)
-            print(valid, user)
-            if user is not None and valid:
-                auth.login(request, user)
-                return render(request,"hod_dashboard.html")
+    user_data = object()
+    try:
+        if request.user.is_authenticated == False:
+            if request.method == "POST":
+                email = request.POST['email']
+                password = request.POST['password']
+                user = authenticate(username=email, password=str(password))
+                # print(user)
+                if hod_registration.objects.filter(hod_email=email):
+                    user_data = hod_registration.objects.filter(hod_email=email)
+                    print("\n\n\nIs HOD ", user_data)
+                elif faculty.objects.filter(faculty_email=email):
+                    user_data = faculty.objects.filter(faculty_email=email)
+                    if user_data.count()>1:
+                        user_data = user_data[0]
+                        print(user_data)
+                    print("\n\n\nIs faculty")
+                elif student.objects.get(student_email=email):
+                    user_data = student.objects.get(student_email=email)
+                valid = False
+                usertype = 0
+                type_user = User.objects.get(username=email)
+                try:
+                    for i in user_data:
+                        valid = i.verification
+                    usertype = type_user.last_name
+                    print(usertype, type(usertype))
+                except:
+                    valid = user_data.verification
+                    usertype = type_user.last_name
+                print(valid, user)
+                if user is not None and valid and usertype=='1':
+                    auth.login(request, user)
+                    print("in hod admin")
+                    return render(request,"dashboard.html")
+                elif user is not None and valid and usertype=='2':
+                    print("in faculty admin")
+                    auth.login(request, user)
+                    return render(request, "faculty/dashboard.html")
+                elif user is not None and valid and usertype=="3":
+                    auth.login(request, user)
+                    print("In student section")
+                    return render(request, "student/dashboard.html")
+                else:
+                    messages.info(request, "Wrong email or password!!")
+                    return redirect("/")
             else:
-                messages.info(request, "Wrong email or password!!")
-                return redirect("/")
+                return render(request, "login.html")
         else:
-            return render(request, "login.html")
-    else:
-        return render(request, "hod_dashboard.html")
+            return render(request, "dashboard.html")
+    except:
+        messages.info(request, "Wrong email or password!!")
+        return redirect("/")
 
 
 def hod_dashboard(request):
-    return render(request, "hod_dashboard.html")
+    return render(request, "dashboard.html")
 
 
 def logout(request):
@@ -114,7 +143,7 @@ def logout(request):
 def add_faculty(request):
     loc = ''
     faculty_in_system = []
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.last_name=='1':
         if request.method == "POST": #and request.FILES['faculty_register']:
             department = request.POST["department"]
             if request.method == 'POST':
@@ -148,12 +177,14 @@ def add_faculty(request):
                             e = df["Department"][i]
                             f = df["Email Id"][i]
                             check = 0
+                            current_user = User.objects.get(email=request.user.email)
+                            hod = hod_registration.objects.get(hod_email=request.user.email)
                             if User.objects.filter(email=f):
                                 check=1
-                                user1 = faculty.objects.create(fullname=a, username=b, password=c,college_name=request.user.last_name,college_department_name=e, subjects=d, user_type=2,faculty_email=f, hod_email=request.user.email)
+                                user1 = faculty.objects.create(fullname=a, username=b, password=c,college_name=hod.college_name, subjects=d, user_type=2,faculty_email=f, hod_email=request.user.email, verification=True, department=department)
                                 # faculty_in_system.append(f)
                             if check==0:
-                                user1 = faculty.objects.create(fullname=a, username=b, password=c,college_name=request.user.last_name, college_department_name=e,subjects=d, user_type=2, faculty_email=f, hod_email=request.user.email)
+                                user1 = faculty.objects.create(fullname=a, username=b, password=c,college_name=hod.college_name, subjects=d, user_type=2, faculty_email=f, hod_email=request.user.email, verification=False,  department=department)
                                 user2 = User.objects.create_user(username=f, password=c, first_name=a, email=f, last_name='2')
                             user = hod_registration.objects.filter(hod_email=request.user.email)
                             hod_name = ''
@@ -172,6 +203,15 @@ def add_faculty(request):
                             user1.save()
                             if check==0:
                                 user2.save()
+                                file_data.delete()
+                                user_data = faculty.objects.get(faculty_email=f)
+                                id = user_data.id
+                                gmail = user_data.faculty_email
+                                subject = f"Please Verify your E-mail Account "
+                                message = f"Please verify your email by going to the following link\nhttp://127.0.0.1:8000/faculty/email_verify/?id={id}&gmail={gmail}\nAlso Please verify your Email id if you have not verified \n\nThanks and Regards,\nProject Evaluation System"
+                                from_email = settings.EMAIL_HOST
+                                to_list = [f]
+                                send_mail(subject, message, from_email, to_list, fail_silently=True)
                         messages.info(request, "All the Faculty are saved Sucessfully")
                         temp_csv.objects.filter(hod_name=request.user.email).delete()
                         return render(request, "add_faculty.html")
@@ -182,7 +222,9 @@ def add_faculty(request):
         else:
             return render(request, "add_faculty.html")
     else:
-        return HttpResponse("Please Login First")
+        messages.info(request, "You does not have required login credentials please login again ")
+        messages.info(request, "or with different Id")
+        return render(request, "error.html")
 
 
 def register_faculty(request):
@@ -283,9 +325,9 @@ def email_verify(request):
         print(hod_data)
         # print(user.hod_verification)
 
-        print(f"\n\n\nHOD VERIFICATION =  {hod_data.hod_verification}")
-        hod_data.hod_verification = True
-        print(f"\n\n\nHOD VERIFICATION =  {hod_data.hod_verification}")
+        print(f"\n\n\nHOD VERIFICATION =  {hod_data.verification}")
+        hod_data.verification = True
+        print(f"\n\n\nHOD VERIFICATION =  {hod_data.verification}")
 
         hod_data.save()
         # verified = "verified"

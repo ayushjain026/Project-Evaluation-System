@@ -1,0 +1,87 @@
+{% extends 'base_hod.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+section.left_padding{
+    padding: 10px 0px 0px 250px;
+    padding-bottom: 200px;
+}
+.file-dummy {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed gray;
+    text-align: center;
+    text-shadow: black;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;}
+    .success {
+      display: none;
+    }
+.middle{
+    {#width:  0px 0px 0px 0px;#}
+    {#padding: 0px 0px 0px 0px;#}
+    border: 2px dashed gray;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    background-color: lightblue;
+}
+</style>
+    <pre>
+        {% for message in messages %}
+        <h3 class="middle">
+                    {{message}}
+        </h3>
+        {% endfor %}
+        </pre>
+{#		<div class="row">#}
+{#			<div class="col-md-6">#}
+{#				<div class="panel panel-default chat">#}
+{#					#}
+
+    <section class="left_padding">
+<div class="panel panel-default ">
+	<div class="panel-heading">
+        Important Notices
+        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+            {% for data1 in data %}
+            <form action="{% url 'delete_note' %}" method="get">
+                {% csrf_token %}
+                    <input type="hidden" value="{{ data1.id }}" name="id">
+
+                    <div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title"><b> {{ data1.note_title }}</b></h4>
+									</div>
+									<div class="timeline-body">
+                                        <p><b>Description :</b> {{ data1.note_description }}</p>
+									</div>
+                                    <div class="timeline-body">
+                                        <p><b>Notice By :</b> {{ data1.user_who_created_notice }}</p>
+									</div>
+                                    <div class="timeline-body">
+                                        <p><b>Date of Notice :</b> {{ data1.created_date }}</p>
+									</div>
+{#                                    <div class="timeline-body">#}
+{#                                        <p><b>For Semister :</b> {{ data1.for_semister }}</p>#}
+{#									</div>#}
+{#                                    <div class="timeline-body">#}
+{#										<input type="submit" class="file-dummy" style="background-color:red;color:white;" value="Delete">#}
+{#									</div>#}
+								</div>
+							</li>
+						</ul>
+                    </div>
+
+            </form>
+            {% endfor %}
+                </div>
+    </section>
+
+
+{% endblock %}
