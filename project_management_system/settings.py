@@ -19,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'aapokemon91@gmail.com'
-EMAIL_HOST_PASSWORD = 'kspmar026'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
 
