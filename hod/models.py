@@ -27,3 +27,8 @@ class test(models.Model):
     image = models.ImageField(upload_to='images/')
 
 
+# class contact_us(models.Model):
+
+
+
+

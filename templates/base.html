@@ -2,6 +2,9 @@
 
 <html lang="en">
   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+{#    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">#}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Project Evaluation System</title>
@@ -56,7 +59,8 @@
         </div>
       </div>
     </div>
-  <body>
+  <body onload="myFunction()">
+  <div id="loading"></div>
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg fixed-top">
@@ -159,6 +163,20 @@
       </div>
     </footer>
     <!-- JavaScript files-->
+     <script>
+		// $(document).ready(function(){
+			// 	$('div#loading').removeAttr('id');
+		// });
+		var preloader = document.getElementById("loading");
+		// window.addEventListener('load', function(){
+		// 	preloader.style.display = 'none';
+		// 	})
+
+		function myFunction(){
+			preloader.style.display = 'none';
+		};
+	</script>
+
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'vendor/jquery.cookie/jquery.cookie.js' %}"> </script>
