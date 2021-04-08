@@ -581,10 +581,7 @@ tr:last-of-type td:last-of-type {
             <td style="color:red;">Not Submited</td>
             {% endif %}
         <td>
-            <form action="/faculty/evaluate_student/" method="get">
-            <input type="Submit" value="Download" class="btn btn-primary">
-            <input type="hidden" value="{{ data.id }}" name="id">
-            </form>
+            <a href="{{ student.submission_file.url }}" download="{{ student.submission_file.url }}">Download file</a>
         </td>
         {% if student.submission_date < student.submission_last_date %}
             <td style="color:green;">Submited On-Time</td>

@@ -3,8 +3,11 @@
 {% block content %}
 
     <section>
+
         {% for message in messages %}
-        <h3>{{message}}</h3>
+        <script>
+            alert({{message}})
+        </script>
         {% endfor %}
       <div class="container">
           <div class="col-lg-7">
@@ -13,23 +16,23 @@
               <h2>College Details</h2>
               <div class="form-group mb-4">
                 <label>College Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="college_name" placeholder="e.g. U.V.Patel College Of Engineering" class="form-control">
+                <input type="text" required name="college_name" placeholder="e.g. U.V.Patel College Of Engineering" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Phone Number<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="college_phone_number" placeholder="9428656325" class="form-control">
+                <input type="text" required name="college_phone_number" placeholder="9428656325" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Department Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="college_department_name " placeholder="Computer Engineering" class="form-control">
+                <input type="text" required name="college_department_name " placeholder="Computer Engineering" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>College URL<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="college_url" placeholder="ganpatuniversity.ac.in" class="form-control">
+                <input type="text" required name="college_url" placeholder="ganpatuniversity.ac.in" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Email-Id<sup class="text-primary">&#10033;</sup></label>
-                <input type="email" name="college_email" placeholder="abc12@gmail.com" class="form-control">
+                <input type="email" required name="college_email" placeholder="abc12@gmail.com" class="form-control">
               </div>
 
               <br>
@@ -37,19 +40,19 @@
               <h2>Personal Details</h2>
               <div class="form-group mb-4">
                 <label>Full Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="hod_fullname" placeholder="e.g. Johnny Depp" class="form-control">
+                <input type="text" required name="hod_fullname" placeholder="e.g. Johnny Depp" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Phone Number<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="hod_phone_number" placeholder="985963289" class="form-control">
+                <input type="text" required name="hod_phone_number" placeholder="985963289" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Email-Id<sup class="text-primary">&#10033;</sup></label>
-                <input type="email" name="hod_email" placeholder="Johnnydeep!gmail.com" class="form-control">
+                <input type="email" required name="hod_email" placeholder="Johnnydeep!gmail.com" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>User Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="hod_username" placeholder="e.g. JD" class="form-control">
+                <input type="text" required name="hod_username" placeholder="e.g. JD" class="form-control">
               </div>
 {#              <div class="form-group mb-4">#}
 {#                <label>Password<sup class="text-primary">&#10033;</sup></label>#}
@@ -57,11 +60,11 @@
 {#              </div>#}
               <div class="form-group mb-4">
                 <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="password" name="hod_password" class="form-control">
+                <input type="password" required name="hod_password" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Upload image of your college ID Card<sup class="text-primary">&#10033;</sup></label><br>
-                <input type="file" name="hod_id_card_image" id="fileToUpload" >
+                <input type="file" required name="hod_id_card_image" id="fileToUpload" >
               </div>
 
               <input type="hidden" name="hod_verification" value="false">

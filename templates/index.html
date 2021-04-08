@@ -1,25 +1,155 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{##}
+{#    <br><br><br>#}
+{#    <h1>This is Index</h1>#}
+{##}
+{#    {% for message in messages %}#}
+{#        <script>#}
+{#            alert('{{message}}')#}
+{#        </script>#}
+{#    {% endfor %}#}
+{##}
+{#    {% if user.is_authenticated %}#}
+{#        <h2>Welcome,&nbsp {{user.first_name}}<br>{{user.last_name}}</h2>#}
+{#        {% if user.last_name == '1' %}#}
+{#            <h2><a href="/hod/hod_dashboard/">Dashboard</a>#}
+{#        {% elif user.last_name == '2' %}#}
+{#            <h2><a href="/faculty/dashboard/">Dashboard</a>#}
+{#        {% elif user.last_name == '3' %}#}
+{#            <h2><a href="/student/dashboard/">Dashboard</a>#}
+{#        {% endif %}#}
+{#    {% endif %}#}
+{##}
+{#{% endblock %}#}
+
+
+
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <br><br><br>
-    <h1>This is Index</h1>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="vendor/lightbox2/css/lightbox.css">
+    <!-- Custom font icons-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     {% for message in messages %}
         <script>
-            alert('{{message}}')
+            alert({{ message }});
         </script>
+        {{ message }}
     {% endfor %}
 
-    {% if user.is_authenticated %}
-        <h2>Welcome,&nbsp {{user.first_name}}<br>{{user.last_name}}</h2>
-        {% if user.last_name == '1' %}
-            <h2><a href="/hod/hod_dashboard/">Dashboard</a>
-        {% elif user.last_name == '2' %}
-            <h2><a href="/faculty/dashboard/">Dashboard</a>
-        {% elif user.last_name == '3' %}
-            <h2><a href="/student/dashboard/">Dashboard</a>
-        {% endif %}
-    {% endif %}
 
+    <!-- Hero Section-->
+    <section class="hero">
+      <div class="container mb-5">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="hero-heading mb-0">Move work <br> forward</h1>
+            <div class="row">
+              <div class="col-lg-10">
+               <!-- <p class="lead text-muted mt-4 mb-4">Lorem ipsum dolor sit amet, consectetur. Eiusmod tempor incididunt.</p>
+              --></div>
+            </div>
+
+          </div>
+          <div class="col-lg-6"><img src="{% static 'img/illustration-hero.svg' %}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Intro Section-->
+    <section>
+      <div class="container">
+        <div class="text-center">
+          <h2>Track projects from start to finish </h2>
+          <p class="lead text-muted mt-2">See This video</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-7 mx-auto mt-5"><video width="400" controls>
+  <source src="img/VID_20190115_201700.mp4" type="video/mp4" >
+</video></div>
+        </div>
+      </div>
+    </section>
+    <!-- Divider Section-->
+    <section class="bg-primary text-white">
+      <div class="container">
+        <div class="text-center">
+          <h2>Do great things together</h2>
+
+        </div>
+      </div>
+    </section>
+    <!-- Integrations Section-->
+    <section>
+      <div class="container">
+        <div class="text-center">
+          <h2>Features</h2>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+               </div>
+          </div>
+        </div>
+        <div class="integrations mt-5">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/monitor.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">User Friendly</h3>
+                 </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/target.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Security</h3>
+                <!--<p class="text-small font-weight-light">Lorem Ipsum has been the industry's standard dummy text ever.</p>
+              --></div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/chat.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">24 x 7 Support</h3>
+                 </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/idea.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Consulting</h3>
+                 </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/coffee-cup.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Email Notification</h3>
+                </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="{% static 'img/pen.svg' %}" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Updates</h3>
+                <p class="text-small font-weight-light"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- JavaScript files-->
 {% endblock %}

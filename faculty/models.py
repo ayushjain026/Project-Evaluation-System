@@ -46,7 +46,7 @@ class evaltation_generate(models.Model):
     submission_file_description = models.CharField(max_length=2000, null=True)
     submission_comment_faculty = models.CharField(max_length=2000, null=True, default="none")
     submission_marks = models.IntegerField()
-    total_marks = models.IntegerField()
+    total_marks = models.IntegerField(null=True)
     faculty_email_auth = models.EmailField()
     hod_email_auth = models.EmailField()
     submission_department = models.CharField(max_length=100, null=True)

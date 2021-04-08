@@ -2,7 +2,7 @@ import os
 from django.contrib.auth.models import User, auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from faculty.models import temp_csv, faculty
+from faculty.models import temp_csv, faculty, notice
 from hod.forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, update_session_auth_hash
@@ -16,6 +16,14 @@ from student.models import student
 
 def index(request):
     return render(request, "index.html")
+
+
+def contact(request):
+    return render(request, "contact.html")
+
+
+def about_us(request):
+    return render(request, "aboutus.html")
 
 
 def hod_register(request):
@@ -60,9 +68,11 @@ def hod_register(request):
                         # messages.info(request, "Data Saved Sucessfully")
                         # return redirect("/")
                     else:
-                        return HttpResponse("Data not Saved \n")
+                        messages.info(request, "Something went wrong please try again")
+                        return render(request, "register.html")
                 except Exception as e:
-                    return HttpResponse(f"Data not Saved with \n{e}")
+                    messages.info(request, "Something Went Wrong Please check your email and try again")
+                    return render(request, "register.html")
             except Exception as e:
                 messages.info(request, "Please Enter valid Number")
                 return render(request, "register.html")
@@ -107,20 +117,25 @@ def hod_login(request):
                     valid = user_data.verification
                     usertype = type_user.last_name
                 print(valid, user)
-                if user is not None and valid and usertype=='1':
-                    auth.login(request, user)
-                    print("in hod admin")
-                    return render(request,"dashboard.html")
-                elif user is not None and valid and usertype=='2':
-                    print("in faculty admin")
-                    auth.login(request, user)
-                    return render(request, "faculty/dashboard.html")
-                elif user is not None and valid and usertype=="3":
-                    auth.login(request, user)
-                    print("In student section")
-                    return render(request, "student/dashboard.html")
+                if valid:
+                    if user is not None and valid and usertype=='1':
+                        auth.login(request, user)
+                        print("in hod admin")
+                        return render(request,"dashboard.html")
+                    elif user is not None and valid and usertype=='2':
+                        print("in faculty admin")
+                        auth.login(request, user)
+                        return render(request, "faculty/dashboard.html")
+                    elif user is not None and valid and usertype=="3":
+                        auth.login(request, user)
+                        print("In student section")
+                        return render(request, "student/dashboard.html")
+                    else:
+                        messages.info(request, "Wrong email or password!!")
+                        return redirect("/")
                 else:
-                    messages.info(request, "Wrong email or password!!")
+                    messages.info(request, "Please verify your email ")
+                    print('in email verification')
                     return redirect("/")
             else:
                 return render(request, "login.html")
@@ -132,7 +147,55 @@ def hod_login(request):
 
 
 def hod_dashboard(request):
-    return render(request, "dashboard.html")
+    faculty_count = faculty.objects.filter(hod_email=request.user.email).count()
+    student_count = student.objects.filter(hod_email=request.user.email).count()
+    note_created = notice.objects.filter(faculty_email_auth=request.user.email).count()
+    data = notice.objects.filter(faculty_email_auth=request.user.email)
+    return render(request, "dashboard.html", {'faculty_count':faculty_count, 'student_count':student_count,
+                                              'note_created':note_created, 'data':data})
+
+
+def delete_student(request):
+    id = request.GET['id']
+    mail = request.GET["fac_email"]
+    print(id, request.GET["fac_email"])
+    try:
+        user1 = faculty.objects.get(id=id)
+        print(user1)
+        user2 = User.objects.filter(username=mail)
+        print(user2)
+        if user1 and user2:
+            user1.delete()
+            user2.delete()
+            faculty_info = faculty.objects.filter(hod_email=request.user.email)
+            return render(request, 'faculty_desc.html', {'faculty_info': faculty_info})
+    except:
+        messages.info(request, "Something went wrong Please try again or later")
+        faculty_info = faculty.objects.filter(hod_email=request.user.email)
+        return render(request, 'faculty_desc.html', {'faculty_info': faculty_info})
+
+
+
+
+def create_notice(request):
+    if request.method == 'POST':
+        notice_title = request.POST['notice_title']
+        notice_desc = request.POST['notice_desc']
+        faculty_email_auth = request.POST['faculty_email_auth']
+        hod_email_auth = request.user.email
+        user_who_created_notice =  request.user.first_name
+        for_semister = 100
+        user_data = hod_registration.objects.get(hod_email=request.user.email)
+        submission_department = user_data.college_department_name
+        notice_create = notice.objects.create(note_title=notice_title, note_description=notice_desc,
+                                              for_semister=int(for_semister), faculty_email_auth=faculty_email_auth,
+                                              user_who_created_notice=user_who_created_notice, hod_email_auth=hod_email_auth,
+                                              submission_department=submission_department)
+        notice_create.save()
+        messages.info(request, "Notice Created Sucessfully")
+        notices = notice.objects.filter(faculty_email_auth=request.user.email,
+                                        user_who_created_notice=request.user.first_name)
+        return render(request, "dashboard.html", {'notices': notices})
 
 
 def logout(request):

@@ -151,13 +151,15 @@ def email_verify(request):
     aa = request.GET['id']
     bb = request.GET['gmail']
     print(aa, bb)
-    faculty_data = student.objects.get(id=aa, faculty_email=bb)
+    faculty_data = faculty.objects.get(id=aa)
     print(faculty_data)
+    # if faculty_data.faculty_email == bb:
+    #     print("same")
     # print(user.hod_verification)
 
-    print(f"\n\n\nHOD VERIFICATION =  {faculty_data.verification}")
-    faculty_data.erification = True
-    print(f"\n\n\nHOD VERIFICATION =  {faculty_data.verification}")
+    # print(f"\n\n\nHOD VERIFICATION =  {faculty_data.verification}")
+    faculty_data.verification = True
+    # print(f"\n\n\nHOD VERIFICATION =  {faculty_data.verification}")
 
     faculty_data.save()
     # verified = "verified"
@@ -243,7 +245,6 @@ def edit_event(request):
         return render(request, "faculty/event_info.html", {"event_info": event_info})
 
 
-
 def profile(request):
     if request.method == "POST":
         user_info = faculty.objects.filter(hod_email=request.POST['fac_email'])
@@ -255,7 +256,7 @@ def profile(request):
         # data.subjects = request.POST['fac_pno']
         data.hod_password = request.POST["fac_pass"]
         data1 = User.objects.get(username = request.user.username)
-        data1.first_name = request.POST['fac_uname']
+        data1.first_name = request.POST['fac_fname']
         data1.email = request.POST["fac_email"]
         data1.username = request.POST["fac_email"]
         temp_pass = str(request.POST["fac_pass"])
@@ -375,7 +376,8 @@ def create_notice(request):
         if for_sem == '0':
             for i in range(1,9):
                 notice_create = notice.objects.create(note_title=form_title, note_description=form_desc , for_semister=i, faculty_email_auth=faculty_email, user_who_created_notice=created_name, hod_email_auth=hod_email, submission_department=user.department)
-            notice_create.save()
+                notice_create.save()
+                print("data saved")
             messages.info(request, "Notice Created Sucessfully")
             notices = notice.objects.filter(faculty_email_auth=request.user.email, user_who_created_notice=request.user.first_name)
             return render(request, "faculty/create_notice.html", {'notices':notices})

@@ -74,23 +74,26 @@
                   <!-- Link-->
                   <li class="nav-item"> <a href="/hod/index/" class="nav-link active">Home</a></li>
                   <!-- Link-->
-                  <li class="nav-item"> <a href="faq.html" class="nav-link">FAQ</a></li>
+{#                  <li class="nav-item"> <a href="faq.html" class="nav-link">FAQ</a></li>#}
                   <!-- Link-->
-                  <li class="nav-item"> <a href="contact.html" class="nav-link">Contact</a></li>
+                  <li class="nav-item"> <a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
                   <!-- Link-->
-                  <li class="nav-item"> <a href="text.html" class="nav-link">Text Page</a></li>
-                  <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                  <div class="dropdown-menu"><a href="faq.html" class="dropdown-item">FAQ</a>
-                      <a href="contact.html" class="dropdown-item">Contact</a><a href="text.html" class="dropdown-item">Text Page</a></div></li>
-                <li><a href="/hod/hod_register/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Registration </a></li>
-{#                <li>#}
-{#                <form action="/hod/email_verify/" method="POST">#}
-{#                    {% csrf_token %}#}
-{#                    <input type="hidden" name="id" value="32">#}
-{#                    <input type="hidden" name="gmail" value="pkjain73@gmail.com">#}
-{#                    <input type="submit" value="email_verify" class="btn btn-primary navbar-btn ml-0 ml-lg-3">#}
-{#                </form>#}
-{#                </li>#}
+                  <li class="nav-item"> <a href="{% url 'about_us' %}" class="nav-link">About Us</a></li>
+{#                  <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>#}
+{#                  <div class="dropdown-menu"><a href="faq.html" class="dropdown-item">FAQ</a>#}
+{#                      <a href="contact.html" class="dropdown-item">Contact</a><a href="text.html" class="dropdown-item">Text Page</a></div></li>#}
+                {% if user.is_authenticated %}
+                    {% if user.last_name == '1' %}
+                        <li><a href="/hod/hod_dashboard/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Dashboard </a></li>
+                    {% elif user.last_name == '2' %}
+                        <li><a href="/faculty/dashboard/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Dashboard </a></li>
+                    {% elif  user.last_name == '3' %}
+                        <li><a href="/student/dashboard/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Dashboard </a></li>
+                    {% else %}
+                {% endif %}
+                {% else %}
+                    <li><a href="/hod/hod_register/" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Registration </a></li>
+                {% endif %}
             </ul>
 
               {% if user.is_authenticated %}
@@ -120,45 +123,45 @@
             <h5 class="footer-heading">Site pages</h5>
             <ul class="list-unstyled">
               <li> <a href="index.html" class="footer-link">Home</a></li>
-              <li> <a href="faq.html" class="footer-link">FAQ</a></li>
-              <li> <a href="contact.html" class="footer-link">Contact</a></li>
+{#              <li> <a href="faq.html" class="footer-link">FAQ</a></li>#}
+              <li> <a href="{% url 'contact' %}" class="footer-link">Contact</a></li>
               <li> <a href="text.html" class="footer-link">Text Page</a></li>
             </ul>
           </div>
           <div class="col-lg-3 mb-5 mb-lg-0">
             <h5 class="footer-heading">Product</h5>
             <ul class="list-unstyled">
-              <li> <a href="#" class="footer-link">Why Appton?</a></li>
-              <li> <a href="#" class="footer-link">Enterprise</a></li>
-              <li> <a href="#" class="footer-link">Blog</a></li>
-              <li> <a href="#" class="footer-link">Pricing</a></li>
+              <li> <a href="#" class="footer-link">Project management</a></li>
+              <li> <a href="#" class="footer-link">Best Management Services</a></li>
+              <li> <a href="#" class="footer-link">Track Work Records</a></li>
+              <li> <a href="#" class="footer-link">For Free</a></li>
             </ul>
           </div>
           <div class="col-lg-3">
             <h5 class="footer-heading">Resources</h5>
             <ul class="list-unstyled">
-              <li> <a href="#" class="footer-link">Download</a></li>
-              <li> <a href="#" class="footer-link">Help Center</a></li>
-              <li> <a href="#" class="footer-link">Guides</a></li>
-              <li> <a href="#" class="footer-link">Partners</a></li>
+              <li> <a href="#" class="footer-link">YouTube</a></li>
+              <li> <a href="#" class="footer-link">Udemy</a></li>
+              <li> <a href="#" class="footer-link">Online Blogs</a></li>
+              <li> <a href="#" class="footer-link">Training</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="copyrights">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-6 text-center text-lg-left">
-              <p class="copyrights-text mb-3 mb-lg-0">&copy; All rights reserved. Appton.co. Design by <a href="https://bootstrapious.com/p/big-bootstrap-tutorial" class="external footer-link">Bootstrapious </a></p>
-              <!-- If you want to remove the backlink, please purchase a license for this template @ https://bootstrapious.com/attribution-free-license. Big thanks!-->
-
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-              <ul class="list-inline social mb-0">
-                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
-              </ul>
-            </div>
-          </div>
+{#          <div class="row">#}
+{#            <div class="col-lg-6 text-center text-lg-left">#}
+{#              <p class="copyrights-text mb-3 mb-lg-0">&copy; All rights reserved. Appton.co. Design by <a href="https://bootstrapious.com/p/big-bootstrap-tutorial" class="external footer-link">Bootstrapious </a></p>#}
+{#              <!-- If you want to remove the backlink, please purchase a license for this template @ https://bootstrapious.com/attribution-free-license. Big thanks!-->#}
+{##}
+{#            </div>#}
+{#            <div class="col-lg-6 text-center text-lg-right">#}
+{#              <ul class="list-inline social mb-0">#}
+{#                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>#}
+{#              </ul>#}
+{#            </div>#}
+{#          </div>#}
         </div>
       </div>
     </footer>
