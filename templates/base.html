@@ -31,6 +31,13 @@
         <script src="{% static 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js' %}"></script>
         <script src="{% static 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><![endif]-->
   </head>
+
+{#  {% for message in messages %}#}
+{#      <script>#}
+{#        alert("{{ message }}");#}
+{#      </script>#}
+{#  {% endfor %}#}
+
   <!-- Login Modal-->
     <div id="login" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
         <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
@@ -99,7 +106,7 @@
               {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}"  class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout</a>
               {% else %}
-                <a href="#" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
+                <a href="/" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
               {% endif %}
           </div>
         </div>

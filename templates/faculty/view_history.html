@@ -551,6 +551,7 @@ tr:last-of-type td:last-of-type {
     <th><b>Group </b></th>
     <th><b>Semister </b></th>
     <th><b>Project Defination</b></th>
+    <th><b>Project File</b></th>
     <th><b>View Work</b></th>
   </tr>
   {% for student in student_info %}
@@ -559,6 +560,7 @@ tr:last-of-type td:last-of-type {
     <td>{{ student.group }}</td>
     <td>{{ student.semister }}</td>
     <td>{{ student.project_defination }}</td>
+    <td><a href="{{ project_file_location.url }}" download="{{ project_file_location.url }}">Download file</a></td>
     <td>
         <form action="/faculty/work_history/" method="get" enctype="multipart/form-data">
         <input type="hidden" value="{{ student.group }}" name="group">

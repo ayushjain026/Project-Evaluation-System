@@ -32,40 +32,59 @@
       </div>
     </section>
     <!-- Contact Section-->
-    <section>
-      <div class="container">
-        <header class="section-header">
-          <h2 class="mb-2">We are the students of computer Engineering studying in 6th Sem. Ganpat University. We make this Project for the benefits of faculty,student and management team.</h2>
-       <div id="example1">
-          <p><img src="{% static 'img/blog1.jpg' %}" alt="" class="client-image img-fluid"><center><b>Deepak Shah</b><br>18012011101<br>CE<br>+91 9499701701</center></div><br>
-            <div id="example2">
-  <p><img src="{% static 'img/blog1.jpg' %}" alt="" class="client-image img-fluid"><center><b>Ayush Jain</b><br>18012011026<br>CE<br>+91 98987 79117</center></div><br>
-        </header>
-      </div>
-    </section>
+<section class="bg-gray">
+<style>
+table, th, td {
+  border: 1px solid black;
+  border:0px;
+}
+</style>
+    <center>
+<table>
+  <tr>
 
-
-    <!-- CLients Section-->
-    <section class="bg-gray">
-      <div class="container">
-        <div class="text-center">
-          <h2>Trusted by teams everywhere</h2>
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <p class="lead text-muted mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. sed do eiusmod tempor incididunt..</p>
-            </div>
-          </div>
-        </div>
-        <div class="clients mt-5">
-          <div class="row">
-            <div class="col-lg-2"><img src="img/client-1.svg" alt="" class="client-image img-fluid"></div>
-            <div class="col-lg-2"><img src="img/client-2.svg" alt="" class="client-image img-fluid"></div>
-            <div class="col-lg-2"><img src="img/client-3.svg" alt="" class="client-image img-fluid"></div>
-            <div class="col-lg-2"><img src="img/client-4.svg" alt="" class="client-image img-fluid"></div>
-            <div class="col-lg-2"><img src="img/client-5.svg" alt="" class="client-image img-fluid"></div>
-            <div class="col-lg-2"><img src="img/client-6.svg" alt="" class="client-image img-fluid"></div>
-          </div>
+    <th style="padding-right: 60px">
+     <div class="container">
+      <div class="card" style="width:300px">
+        <img class="card-img-top" src="{% static 'img/Developer_AyushJain.jpeg' %}" alt="Card image">
+        <div class="card-body">
+            <h4 class="card-title">Ayush Jain</h4>
+            <p class="card-text"><b>Batch :</b> 6EH-3, <b>Sem : </b>5th</p>
+            <p class="card-text"><b>Authorised Faculty :</b> Prof.Ritesh Upadhyay</p>
+            <p class="card-text"><b>E_No :</b> 18012011026</p>
+            <p class="card-text"><b>GMail :</b> ayushjain1126@gmail.com</p>
+            <p class="card-text"><b>Experiance :</b> 1 Month</p>
+            <p class="card-text">
+                <a class="btn btn-primary" href="https://drive.google.com/file/d/1c1_R8CZdB-BfhiXOApboMm8uuPIs2pdl/view?usp=sharing" target="_blank" download="https://drive.google.com/file/d/1c1_R8CZdB-BfhiXOApboMm8uuPIs2pdl/view?usp=sharing">Resume</a>
+            </p>
         </div>
       </div>
+     </div>
+
+    </th>
+{#    <th>#}
+{#        <th style="padding-left: 60px">#}
+{#     <div class="container">#}
+{#      <div class="card" style="width:300px">#}
+{#        <img class="card-img-top" src="{% static 'img/Developer_AyushJain.jpeg' %}" alt="Card image">#}
+{#        <div class="card-body">#}
+{#            <h4 class="card-title">Ayush Jain</h4>#}
+{#            <p class="card-text"><b>Batch :</b> 6EH-3, <b>Sem : </b>5th</p>#}
+{#            <p class="card-text"><b>Authorised Faculty :</b> Prof.Ritesh Upadhyay</p>#}
+{#            <p class="card-text"><b>E_No :</b> 18012011026</p>#}
+{#            <p class="card-text"><b>GMail :</b> ayushjain1126@gmail.com</p>#}
+{#            <p class="card-text"><b>Experiance :</b> 1 Month</p>#}
+{#            <p class="card-text">#}
+{#                <a class="btn btn-primary" href="https://drive.google.com/file/d/1c1_R8CZdB-BfhiXOApboMm8uuPIs2pdl/view?usp=sharing" target="_blank" download="https://drive.google.com/file/d/1c1_R8CZdB-BfhiXOApboMm8uuPIs2pdl/view?usp=sharing">Resume</a>#}
+{#            </p>#}
+{#        </div>#}
+{#      </div>#}
+{#     </div>#}
+    </th>
+  </tr>
+</table>
+    </center>
+  <br>
+
     </section>
   {% endblock %}

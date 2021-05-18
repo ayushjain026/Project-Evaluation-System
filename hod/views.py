@@ -306,7 +306,7 @@ def edit_faculty(request):
         data.fullname = request.POST['fac_fname']
         data.username = request.POST['fac_uname']
         data.faculty_email = request.POST['fac_email']
-        data.college_department_name = request.POST['fac_dep']
+        data.department = request.POST['fac_dep']
         data.subjects = request.POST['fac_sub']
         data.save()
         messages.info(request, "Data saved SucessFully")

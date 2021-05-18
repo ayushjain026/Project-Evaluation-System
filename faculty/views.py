@@ -13,7 +13,8 @@ from faculty.forms import csvForm_faculty, create_submission_form
 from faculty.models import temp_csv, faculty, evaltation_generate, notice
 from hod.models import hod_registration
 from project_management_system import settings
-from student.models import temp_csv_for_students, student, student_subjects, work_histort, event_submission
+from student.models import temp_csv_for_students, student, student_subjects, work_histort, event_submission, \
+    project_code
 
 
 def dashboard(request):
@@ -410,9 +411,20 @@ def view_history(request):
     if request.method == 'POST':
         return HttpResponse("This is in POST method")
     else:
-        print('This is GET')
+        student_email = ''
         student_info = student.objects.filter(faculty_email=request.user.email)
-        return render(request, "faculty/view_history.html", {"student_info":student_info})
+        for i in student_info:
+            student_email = i.student_email
+        print(student_email)
+        student_id = User.objects.get(email=student_email)
+        print(student_id.email)
+        student_project_details = User.objects.filter(email=student_id.email)
+        id = 0
+        for i in student_project_details:
+            id = i.id
+        project_file = project_code.objects.get(student_id=int(id))
+        project_file_location = project_file.project_code_file
+        return render(request, "faculty/view_history.html", {"student_info":student_info, "project_file_location":project_file_location})
 
 
 def project_history(request):
